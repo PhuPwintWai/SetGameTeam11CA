@@ -1,22 +1,3 @@
-$(document).ready(function () {
-//    $.getJSON("api/cardsOnTable/getTableCards/")
-//            .done(function (data) {
-//                // To clear all rows inside the table
-//                $("#table").empty();
-//                // Add row based on return data
-//                var row = $("<tr />")
-//                $("#table").append(row);
-//                for (var i = 0, il = data.cards.length; i < il; i++) {
-//                    if (i % 3 === 0) {
-//                        row = $("<tr />")
-//                        $("#table").append(row);
-//                    }
-//                    drawRow(data.cards[i], row);
-//                }
-//            }).fail(function () {
-//        Console.log("Not Found");
-//    });
-});
 var imageurl = new String();  // insert selecting image
 
 var imageurlpointingplace = new String();//used to place index of original place but not yet got 
@@ -28,7 +9,7 @@ var selectedCards = [3];
 
 function drawRow(cardData, row) {
     //onClick='checkGameRules("+cardData.imageUrl+")'
-    row.append($("<td>" + "<input  type='image' src='/" + cardData.imageUrl
+    row.append($("<td>" + "<input  type='image' src='" + cardData.imageUrl
             + "' id='" + cardData.id
             + "' width='50' height='50' onclick='checkGameRules(this.id)'>" + "</td>"));
     console.log(cardData.imageUrl);
@@ -48,6 +29,7 @@ function resume(gameId) {
     currentGame = gameId;
     $.getJSON("api/cardsOnTable/getTableCards/?id=" + gameId)
             .done(function (data) {
+               
                 showCardsOnTable("#table", data.cards);
             }).fail(function () {
         console.log("Not Found");
@@ -96,28 +78,6 @@ function checkGameRules(id) {
             console.log("Not Found");
         });
     }
-//    console.log(selectedCount);
-//    if (selectedCount < 3) {
-//        imageurl[selectedCount] = id;
-//        console.log(imagefirsturl.length);
-//
-////to get original index of the original array
-//        for (var i = 0; i <= imagefirsturl.length; i++) {
-//            var selectedCountt = 0;
-//            if (imagefirsturl[i].toString() === imageurl[selectedCount].toString()) {
-//                imageurlpointingplace[selectedCountt] = i;
-//                console.log(imageurlpointingplace.toString());
-//                selectedCountt++;
-//            }
-//        }
-//        //
-//        console.log(imageurl[selectedCount]);
-//    }
-//    else {
-//        alert("" + imageurlpointingplace[0] + imageurlpointingplace[1] + imageurlpointingplace[2] + "You have chosen three times");
-//    }
-//    selectedCount++;
-//    return;
 }
 
 $(function () {
@@ -161,6 +121,7 @@ $(function () {
 //                    row.append($("<td>" + data.creator + "</td>"));
 //                    row.append($("<td>" + data.date + "</td>"));
                     row.append($("<td><button class='btnResume' value='" + data.id + "' onclick='resume(" + data.id + ")'>Resume</button></td>"));
+                    console.log (data.id);
                 }).fail(function () {
             Console.log("Not Found");
         });
