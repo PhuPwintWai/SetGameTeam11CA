@@ -6,7 +6,6 @@ import com.Team11.Model.CardOnTable;
 import com.Team11.Model.Game;
 import com.Team11.Model.SetEngine;
 import com.Team11.Service.GameService;
-import com.Team11.web.ParticipantList;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.json.Json;
@@ -14,15 +13,11 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-import org.glassfish.jersey.media.sse.OutboundEvent;
-
 
 @Path("/cardsOnTable")
 @Stateless
@@ -30,12 +25,11 @@ public class TableServlet extends HttpServlet {
 
     @Inject
     GameService gameService;
- @Inject private ParticipantList participantList;
+
     @GET
     @Produces("application/json")
     @Path("/getTableCards")
     public JsonObject showTableCards(@Context UriInfo info) {
-        
         CardOnTable cardOnTable = null;
         String id = info.getQueryParameters().getFirst("id");
         if (id != null) {
@@ -63,43 +57,13 @@ public class TableServlet extends HttpServlet {
 
     @GET
     @Produces("application/json")
-    @Path("/checktableCards")
+    @Path("/checkTableCards")
     public JsonObject checkTableCards(@Context UriInfo info) {
         CardOnTable cardOnTable = null;
         String gameId = info.getQueryParameters().getFirst("id");
         int cardId1 = Integer.parseInt(info.getQueryParameters().getFirst("card1").toString());
         int cardId2 = Integer.parseInt(info.getQueryParameters().getFirst("card2").toString());
         int cardId3 = Integer.parseInt(info.getQueryParameters().getFirst("card3").toString());
-        System.out.println(" this is card 1 , 2 & 3 : "+cardId1+cardId2+cardId3);
-        
-        
-        
-        
-         JsonObject json = Json.createObjectBuilder()
-//                .add("name", name)
-                .add("image1", cardId1)
-                .add("image2", cardId2)
-                .add("image3", cardId3)
-                .build();
-//        System.out.println(name + ">>> " + image1);
-        OutboundEvent data1= new OutboundEvent.Builder()
-                .data(JsonObject.class, json)
-                .mediaType(MediaType.APPLICATION_JSON_TYPE)
-                .build();
-
-        participantList.send(data1); 
-        
-        //response.setStatus(HttpServletResponse.SC_OK);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         JsonObjectBuilder results = Json.createObjectBuilder();
         JsonArrayBuilder cards = Json.createArrayBuilder();
         JsonArrayBuilder setCards = Json.createArrayBuilder();

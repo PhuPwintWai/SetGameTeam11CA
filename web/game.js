@@ -68,7 +68,6 @@ function checkGameRules(id) {
                         selectedCards = [];
                         // Replace the old cards with new cards
                         alert(data.status);
-                        console.log(data.status);
                         //
                         showCardsOnTable("#table",data.cards);
                         showCardsOnTable("#setTable",data.setCards);
@@ -118,9 +117,9 @@ $(function () {
                     // Add row based on return data
                     var row = $("<tr id=" + data.id + "/>")
                     $("#games").append(row);
-                    row.append($("<td>" + data.id + "</td>"));
-                    row.append($("<td>" + data.creator + "</td>"));
-                    row.append($("<td>" + data.date + "</td>"));
+//                    row.append($("<td>" + data.id + "</td>"));
+//                    row.append($("<td>" + data.creator + "</td>"));
+//                    row.append($("<td>" + data.date + "</td>"));
                     row.append($("<td><button class='btnResume' value='" + data.id + "' onclick='resume(" + data.id + ")'>Resume</button></td>"));
                     console.log (data.id);
                 }).fail(function () {
