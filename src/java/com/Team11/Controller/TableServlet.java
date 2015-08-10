@@ -87,7 +87,8 @@ public class TableServlet extends HttpServlet {
                 .mediaType(MediaType.APPLICATION_JSON_TYPE)
                 .build();
 
-        participantList.send(data1);    
+        participantList.send(data1); 
+        
         //response.setStatus(HttpServletResponse.SC_OK);
         
         
