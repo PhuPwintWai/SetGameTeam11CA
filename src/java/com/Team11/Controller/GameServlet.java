@@ -18,12 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-// Ref : https://jersey.java.net/documentation/latest/jaxrs-resources.html#d0e2011
 
-/**
- *
- * @author MZN
- */
 @Path("/game")
 @Stateless
 public class GameServlet extends HttpServlet {

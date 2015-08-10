@@ -1,32 +1,75 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.Team11.Model;
 
-/**
- *
- * @author MZN
- */
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
-    private String userName;
+    @Id @Column (name="userName") private String username;
+    private int userid;
+    private String email;
+    private String userpassword;
 
-    public User(String userName) {
-        this.userName = userName;
+    public User() {
     }
 
-    public String getUserName() {
-        return userName;
+    
+    public User(String username) {
+        this.username = username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "userName=" + userName + '}';
+    public void setEmail(String email) {
+        this.email = email;
     }
+   
+    
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public String getUserpassword() {
+        return userpassword;
+    }
+
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
+    }
+
+   
+    public JsonObject toJson(){
+        return (Json.createObjectBuilder()               
+                .add("userName", username )
+                .build());
+    }
+    
+
+
+   
+
+    
+
+   
     
 }

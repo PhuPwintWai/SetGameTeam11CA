@@ -17,6 +17,10 @@ public class Game {
         return cardOnTable;
     }
 
+    public Game() {
+    }
+    
+
     public void setCardOnTable(CardOnTable cardOnTable) {
         this.cardOnTable = cardOnTable;
     }
@@ -55,7 +59,7 @@ public class Game {
     public JsonObject toJson() {
         JsonObjectBuilder gameData = Json.createObjectBuilder();
         gameData.add("id", id);
-        gameData.add("creator", creator.getUserName());
+        gameData.add("creator", creator.getUsername());
         gameData.add("date", createdDate.toString());
         return gameData.build();
     }
